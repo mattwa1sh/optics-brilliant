@@ -21,3 +21,5 @@ This is a _little bit tricky_. The game starts off by giving you the last hit po
 Identify incorrect virtual images in a puzzle setup that otherwise appears valid. 
 
 If you _double click_ the virtual image, it will receive a red X. That means bad. When you've decided which virtual images are incorrect, you click submit solution. 
+
+You should use "showRays" to solve this. I can't really solve them without looking at the rays.

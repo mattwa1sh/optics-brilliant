@@ -2216,8 +2216,8 @@ function configureButtonsForPuzzleType(puzzleType) {
       break;
       
     case "investigator":
-      // Investigator: disable Show Rays, Add Mirror, and Export
-      showRaysEnabled = false;
+      // Investigator: enable Show Rays, disable Add Mirror and Export
+      showRaysEnabled = true; // Changed from false to true
       addMirrorEnabled = false;
       exportEnabled = false;
       break;

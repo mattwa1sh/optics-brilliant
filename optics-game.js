@@ -254,7 +254,9 @@ function draw() {
 
   if (window.drawPuzzleOverlay) {
     const result = window.drawPuzzleOverlay();
-    skipRayPaths = result && result.skipRayPaths;
+    // In detective mode, we always want to allow ray paths if the user enables them
+    const inDetectiveMode = typeof isDetectiveMode !== 'undefined' && isDetectiveMode;
+    skipRayPaths = result && result.skipRayPaths && !inDetectiveMode;
   }
   
   // Draw ray paths if enabled and not skipped by puzzle
@@ -1806,9 +1808,12 @@ mousePressed = function() {
     }
   }
   
-  // RAY CYCLING: Should work in sandbox, presentation and generation modes
-  if (showRayPaths && (inPresentationMode || inGenerationMode || !isPuzzleMode)) {
-    console.log("In ray-cycling mode - checking for clicks on reflections");
+  // Check for reflection clicks in either detective mode or when rayPaths are shown
+  // Place this BEFORE the movement check so we can still click reflections in detective mode
+  const shouldCheckReflections = inDetectiveMode || showRayPaths; 
+  
+  if (shouldCheckReflections) {
+    console.log("Checking for clicks on reflections");
     // Check each visible reflection
     for (let i = 0; i < reflections.length; i++) {
       const reflection = reflections[i];
@@ -1827,6 +1832,12 @@ mousePressed = function() {
         // Show rays for this reflection
         console.log(`Clicked on visible reflection ${i} - setting currentRayIndex`);
         currentRayIndex = i;
+        if (!showRayPaths) {
+          // Auto-enable ray paths if they aren't already visible
+          showRayPaths = true;
+          const toggleBtn = document.getElementById('togglePaths');
+          if (toggleBtn) toggleBtn.textContent = "Hide Rays";
+        }
         return; // Exit early since we handled the click
       }
     }
