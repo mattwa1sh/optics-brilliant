@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Matt W's Optics Game</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css">
+	<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+			background: #f5f5f5;
+			font-family: system-ui, sans-serif;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		#play_game {
+			margin: 2rem 0 1rem;
+		}
+
+		#play_game a {
+			color: #0969da;
+			text-decoration: none;
+			font-size: 1.5rem;
+			font-weight: 500;
+		}
+
+		#play_game a:hover {
+			text-decoration: underline;
+		}
+
+		.markdown-body {
+			max-width: 800px;
+			width: 100%;
+			background: white;
+			padding: 2rem;
+			border-radius: 8px;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+			margin-bottom: 4rem;
+		}
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+	<div id="play_game"><a href="game.html">--> Play the game! <--</a></div>
+	<div class="markdown-body" id="markdown-container"></div>
+	<div id="play_game"><a href="game.html">--> Play the game! <--</a></div>
+
+	<script>
+		fetch('README.md')
+			.then(response => response.text())
+			.then(text => {
+				document.getElementById('markdown-container').innerHTML = marked.parse(text);
+			});
+	</script>
+</body>
+</html>

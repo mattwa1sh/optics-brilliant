@@ -1,0 +1,58 @@
+{
+  "name": "Two Reflection ONLY",
+  "type": "generation",
+  "description": "Create EXACTLY two first-order reflections, and nothing else,to solve this puzzle.",
+  "arrangement": "parallel-mirrors.json",
+  "movableObjects": ["mirrors"],
+  "randomize": {
+    "eye": {
+      "position": true,
+      "region": {
+        "x": 100,
+        "y": 500,
+        "width": 900,
+        "height": 250
+      }
+    },
+    "ball": {
+      "position": true,
+      "region": {
+        "x": 100,
+        "y": 50,
+        "width": 900,
+        "height": 350
+      }
+    },
+    "mirrors": {
+      "position": true,
+      "rotation": true,
+      "region": {
+        "x": 150,
+        "y": 100,
+        "width": 800,
+        "height": 400
+      }
+    }
+  },
+  "winCondition": {
+    "type": "exactReflections",
+    "order": 1,
+    "count": 2
+  },
+  "loseConditions": [
+    {
+      "type": "totalReflections",
+      "operator": ">",
+      "count": 2
+    },
+    {
+      "type": "timeLimit",
+      "seconds": 30
+    }
+  ],
+  "hints": [
+    "Try repositioning the mirrors to create exactly two reflections.",
+    "Make sure the reflections are visible to the eye.",
+    "You only have 30 seconds to solve this puzzle!"
+  ]
+} 

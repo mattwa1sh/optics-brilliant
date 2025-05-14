@@ -1,0 +1,16 @@
+{
+  "name": "Simple Investigator Case",
+  "type": "investigator",
+  "description": "You are an investigator now! Find the manipulated reflection in this simple setup.",
+  "arrangement": "circle.json",
+  "movableObjects": [],
+  "manipulatedReflections": [
+    {
+      "index": 2,
+      "translation": [25, 30]
+    }
+  ],
+  "hints": [
+    "Look for reflections that don't follow the laws of physics."
+  ]
+} 

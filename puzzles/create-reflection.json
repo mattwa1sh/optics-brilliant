@@ -1,0 +1,43 @@
+{
+  "name": "Single Reflection Puzzle",
+  "type": "generation",
+  "description": "This is so easy it's barely a puzzle. Create a single reflection to learn the basics, and you win!",
+  "arrangement": "basic-setup.json",
+  "movableObjects": ["mirrors"],
+  "winCondition": {
+    "type": "exactReflections",
+    "order": 1,
+    "count": 1
+  },
+  "loseCondition": {
+    "type": "timeLimit",
+    "seconds": 30
+  },
+  "randomize": {
+  "mirrors": {
+    "position": true,
+    "rotation": true,
+    "size": {
+      "min": 150,
+      "max": 300
+    },
+    "width": {
+      "min": 3,
+      "max": 6
+    },
+    "region": {
+      "x": 50,
+      "y": 50,
+      "width": 1150,
+      "height": 600
+      }
+    }
+  },
+  "difficulty": "easy",
+  "hints": [
+    "Drag the blue side of a mirror to position it between the ball and the eye.",
+    "The blue side of the mirror is reflective, the black side is not.",
+    "Remember that light reflects at the same angle it hits the mirror.",
+    "Try different angles until the eye can see a reflection."
+  ]
+}

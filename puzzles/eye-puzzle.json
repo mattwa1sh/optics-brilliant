@@ -1,0 +1,19 @@
+{
+    "name": "Single Reflection Puzzle",
+    "type": "generation",
+    "description": "Remember, the black side of the mirror is not reflective.",
+    "arrangement": "backwards.json",
+    "movableObjects": ["eye"],
+    "winCondition": {
+      "type": "exactReflections",
+      "order": 1,
+      "count": 1
+    },
+    "loseCondition": {
+      "type": "timeLimit",
+      "seconds": 30
+    },
+    "hints": [
+       "Photons are absorbed by most materials"
+      ]
+}

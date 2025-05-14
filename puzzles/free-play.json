@@ -1,0 +1,11 @@
+{
+    "name": "Welcome to Matt W'sOptics Game!",
+    "type": "presentation",
+    "description": "Welcome to Matt W's Optics Game! Experiment freely with mirrors, the ball, and the eye to explore reflections.<br><br>Click show rays to show the photon paths, represented by a solid line, and the paths to virtual images, represented by dashed lines.<br><br>Different order virtual images (ie, reflections) are represented by different colors. A 2nd order image-- a reflection of a reflection is rendered as purple. In real life, they are all blue. But that is both boring and confusing, and we Optics Investigators prefer not to bore or confuse.<br><br>Also! The eye matters. It needs to be positioned correctly to see the virtual images. It cant see through the opaque (black) side of mirrors.",
+    "arrangement": "basic-setup.json",
+    "movableObjects": ["ball", "eye", "mirrors"],
+    "hints": [
+      "Try creating interesting reflection patterns!",
+      "Parallel mirrors can create infinite reflections."
+    ]
+}

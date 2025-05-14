@@ -1,0 +1,16 @@
+{
+  "name": "3rd Investigator Case",
+  "type": "investigator",
+  "description": "Find the manipulated reflection in this simple setup.",
+  "arrangement": "ray-problems-2.json",
+  "movableObjects": [],
+  "manipulatedReflections": [
+    {
+      "index": 2,
+      "translation": [-50, -100]
+    }
+  ],
+  "hints": [
+    "Look for reflections that don't follow the laws of physics."
+  ]
+} 

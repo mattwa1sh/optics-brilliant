@@ -1,0 +1,8 @@
+{
+  "name": "Random Path Challenge",
+  "type": "path_identification",
+  "description": "Identify the path of a random higher-order reflection.",
+  "arrangement": "arrangement-2023-05-12T18-54-12-345Z.json",
+  "movableObjects": [],
+  "randomTarget": true
+}

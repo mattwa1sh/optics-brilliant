@@ -1,0 +1,8 @@
+{
+  "name": "Path Identification Challenge 3",
+  "type": "path_identification",
+  "description": "Identify the path that creates a random reflection.",
+  "arrangement": "perpy-tricky.json",
+  "movableObjects": [],
+  "randomTarget": true
+}

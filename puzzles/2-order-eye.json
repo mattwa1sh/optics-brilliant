@@ -1,0 +1,19 @@
+{
+    "name": "2nd Order Eye",
+    "type": "generation",
+    "description": "Create TWO 2nd order reflection (reflection of a reflection) by positioning the eye.",
+    "arrangement": "x2.json",
+    "movableObjects": ["eye", "ball"],
+    "winCondition": {
+      "type": "minReflections",
+      "order": 2,
+      "count": 2
+    },
+    "loseCondition": {
+        "type": "timeLimit",
+        "seconds": 30
+      },
+    "hints": [
+      "Be very precise."
+    ]
+  } 

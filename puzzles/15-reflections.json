@@ -1,0 +1,93 @@
+{
+  "type": "generation",
+  "name": "Reflection Madness",
+  "description": "Create at least 15 reflections by positioning the mirrors correctly. I'm not sure every puzzle actually has a solution. Hopefully you get lucky.",
+  "arrangement": "4-mirror.json",
+  "movableObjects": ["mirrors", "eye"],
+  "winCondition": {
+    "type": "totalReflections",
+    "operator": ">=",
+    "count": 15
+  },
+  "loseCondition": {
+    "type": "timeLimit",
+    "seconds": 30
+  },
+  "randomize": {
+    "ball": {
+      "position": true,
+      "region": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 800
+      }
+    },
+    "mirrors": [
+      {
+        "position": true,
+        "rotation": false,
+        "angle": 0,
+        "size": {
+          "min": 250,
+          "max": 250
+        },
+        "region": {
+          "x": 50,
+          "y": 50,
+          "width": 1100,
+          "height": 600
+        }
+      },
+      {
+        "position": true,
+        "rotation": false,
+        "angle": 90,
+        "size": {
+          "min": 250,
+          "max": 250
+        },
+        "region": {
+          "x": 50,
+          "y": 50,
+          "width": 1100,
+          "height": 600
+        }
+      },
+      {
+        "position": true,
+        "rotation": false,
+        "angle": 0,
+        "size": {
+          "min": 250,
+          "max": 250
+        },
+        "region": {
+          "x": 50,
+          "y": 50,
+          "width": 1100,
+          "height": 600
+        }
+      },
+      {
+        "position": true,
+        "rotation": false,
+        "angle": 90,
+        "size": {
+          "min": 250,
+          "max": 250
+        },
+        "region": {
+          "x": 50,
+          "y": 50,
+          "width": 1100,
+          "height": 600
+        }
+      }
+    ]
+  },
+  "hints": [
+    "Try creating a configuration where light bounces back and forth multiple times.",
+    "Parallel mirrors can create many reflections."
+  ]
+} 

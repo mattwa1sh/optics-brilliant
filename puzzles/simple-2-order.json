@@ -1,0 +1,21 @@
+{
+  "name": "2nd Order Reflections",
+  "type": "generation",
+  "description": "Create a 2nd order reflection (reflection of a reflection) by positioning the mirrors correctly. The mirrorS. ",
+  "arrangement": "2-order.json",
+  "movableObjects": ["mirrors"],
+  "winCondition": {
+    "type": "minReflections",
+    "order": 2,
+    "count": 1
+  },
+  "loseCondition": {
+      "type": "timeLimit",
+      "seconds": 30
+    },
+  "hints": [
+    "S means plural",
+    "You need two mirrors to create a 2nd-order reflection.",
+    "Okay, fine. You need to click add mirror."
+  ]
+} 

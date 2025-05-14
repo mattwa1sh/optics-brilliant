@@ -1,0 +1,91 @@
+{
+  "type": "generation",
+  "name": "Reflection Madness",
+  "description": "Create at least 11 and less than 15 virtual images by positioning the mirrors correctly.",
+  "arrangement": "close-eye.json",
+  "movableObjects": ["mirrors"],
+  "winCondition": {
+    "type": "totalReflections",
+    "operator": ">=",
+    "count": 11
+  },
+  "loseConditions": [
+    {
+      "type": "totalReflections",
+      "operator": ">",
+      "count": 14
+    },
+    {
+      "type": "timeLimit",
+      "seconds": 30
+    }
+  ],
+  "randomize": {
+    "mirrors": [
+      {
+        "position": true,
+        "rotation": false,
+        "angle": 0,
+        "size": {
+          "min": 250,
+          "max": 250
+        },
+        "region": {
+          "x": 50,
+          "y": 50,
+          "width": 1100,
+          "height": 600
+        }
+      },
+      {
+        "position": true,
+        "rotation": false,
+        "angle": 90,
+        "size": {
+          "min": 250,
+          "max": 250
+        },
+        "region": {
+          "x": 50,
+          "y": 50,
+          "width": 1100,
+          "height": 600
+        }
+      },
+      {
+        "position": true,
+        "rotation": false,
+        "angle": 0,
+        "size": {
+          "min": 250,
+          "max": 250
+        },
+        "region": {
+          "x": 50,
+          "y": 50,
+          "width": 1100,
+          "height": 600
+        }
+      },
+      {
+        "position": true,
+        "rotation": false,
+        "angle": 90,
+        "size": {
+          "min": 250,
+          "max": 250
+        },
+        "region": {
+          "x": 50,
+          "y": 50,
+          "width": 1100,
+          "height": 600
+        }
+      }
+    ]
+  },
+  "hints": [
+    "Try creating a configuration where light bounces back and forth multiple times.",
+    "Parallel mirrors can create many reflections."
+  ]
+} 

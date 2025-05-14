@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Optics Game</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+	<script src="optics-game.js" defer></script>
+	<script src="puzzles.js" defer></script>
+	<script src="puzzles_arrangements_list.js" defer></script>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div id="buttonContainer">
+		<button id="togglePaths">Show Rays</button>
+		<button id="addMirror">Add Mirror</button>
+		<button id="exportArrangement">Export</button>
+		<button id="resetGame">Reset</button>
+		<button id="puzzleBtn">Sandbox</button>
+	</div>
+	<div id="arrangementControls" style="display: none;">
+		<select id="arrangementSelect">
+			<option value="">-- Select Arrangement --</option>
+		</select>
+		<button id="loadArrangement">Load</button>
+		<button id="refreshArrangements" class="refresh-btn" title="Refresh List">↻</button>
+	</div>
+	<div id="puzzleControls" style="display: flex;">
+		<select id="puzzleSelect">
+			<option value="">-- Select Puzzle --</option>
+		</select>
+		<button id="loadPuzzle">Start Puzzle</button>
+		<button id="refreshPuzzles" class="refresh-btn" title="Refresh List">↻</button>
+	</div>
+	<div class="game-container">
+	</div>
+	
+	<script>
+		// Function to populate the arrangement dropdown
+		function loadArrangementsList() {
+			// Use the function from puzzles_arrangements_list.js
+			if (typeof populateArrangementsList === 'function') {
+				populateArrangementsList();
+			} else {
+				console.error("populateArrangementsList function not found - falling back to default");
+				const select = document.getElementById('arrangementSelect');
+				
+				// Add a fallback option
+				while (select.options.length > 1) {
+					select.remove(1);
+				}
+				
+				const option = document.createElement('option');
+				option.value = "basic-setup.json";
+				option.textContent = "Basic Setup";
+				select.appendChild(option);
+			}
+		}
+		
+		// Function to populate the puzzle dropdown
+		function loadPuzzlesList() {
+			// Use the function from puzzles_arrangements_list.js
+			if (typeof populatePuzzlesList === 'function') {
+				populatePuzzlesList();
+			} else {
+				console.error("populatePuzzlesList function not found - falling back to default");
+				const select = document.getElementById('puzzleSelect');
+				
+				// Add a fallback option
+				while (select.options.length > 1) {
+					select.remove(1);
+				}
+				
+				const option = document.createElement('option');
+				option.value = "01_tutorial.json";
+				option.textContent = "Tutorial";
+				select.appendChild(option);
+			}
+		}
+		
+		// Load arrangements when the page loads
+		window.addEventListener('DOMContentLoaded', () => {
+			loadArrangementsList();
+			loadPuzzlesList();
+			
+			// Automatically load the first puzzle (Tutorial) by default
+			setTimeout(() => {
+				// Default to the first real puzzle (index 1, skipping the "Select Puzzle" option)
+				const puzzleSelect = document.getElementById('puzzleSelect');
+				if (puzzleSelect.options.length > 1) {
+					puzzleSelect.selectedIndex = 1;
+					// Load the selected puzzle
+					const selectedFile = puzzleSelect.value;
+					if (selectedFile) {
+						loadPuzzle(selectedFile);
+					}
+				}
+			}, 500); // Small delay to ensure everything is loaded
+		});
+		
+		// Toggle between arrangement and puzzle controls
+		document.getElementById('puzzleBtn').addEventListener('click', function() {
+			const arrangementControls = document.getElementById('arrangementControls');
+			const puzzleControls = document.getElementById('puzzleControls');
+			
+			if (puzzleControls.style.display !== 'none') {
+				// Switch to sandbox mode
+				arrangementControls.style.display = 'flex';
+				puzzleControls.style.display = 'none';
+				this.textContent = 'Puzzles';
+				
+				// Exit puzzle mode if active
+				if (typeof exitPuzzleMode === 'function') {
+					exitPuzzleMode();
+				}
+			} else {
+				// Switch to puzzle mode
+				arrangementControls.style.display = 'none';
+				puzzleControls.style.display = 'flex';
+				this.textContent = 'Sandbox';
+			}
+		});
+		
+		// Add refresh button functionality
+		document.getElementById('refreshArrangements').addEventListener('click', loadArrangementsList);
+		document.getElementById('refreshPuzzles').addEventListener('click', loadPuzzlesList);
+		
+		// Setup load arrangement button
+		document.getElementById('loadArrangement').addEventListener('click', function() {
+			const select = document.getElementById('arrangementSelect');
+			const selectedFile = select.value;
+			
+			if (selectedFile) {
+				const url = `arrangements/${selectedFile}`;
+				console.log(`Fetching arrangement: ${url}`);
+				
+				fetch(url)
+					.then(response => {
+						if (!response.ok) {
+							throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
+						}
+						return response.json(); // Parse as JSON instead of text
+					})
+					.then(data => {
+						// Use the importArrangement function to apply the arrangement
+						const success = importArrangement(data);
+						if (success) {
+							console.log("Arrangement loaded successfully");
+						} else {
+							console.error("Failed to import arrangement");
+						}
+					})
+					.catch(error => {
+						alert(`Error: ${error.message}`);
+					});
+			} else {
+				alert('Please select an arrangement file');
+			}
+		});
+		
+		// Setup load puzzle button
+		document.getElementById('loadPuzzle').addEventListener('click', function() {
+			const select = document.getElementById('puzzleSelect');
+			const selectedFile = select.value;
+			
+			if (selectedFile) {
+				// Use the loadPuzzle function from optics-game.js
+				loadPuzzle(selectedFile);
+			} else {
+				alert('Please select a puzzle file');
+			}
+		});
+	</script>
+</body>
+</html>
