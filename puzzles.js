@@ -144,6 +144,9 @@ function loadPuzzle(puzzleFilename) {
               
               // Disable buttons that shouldn't be used in path identification mode
               disableButtonsForPathIdentification();
+              
+              // Configure buttons for path identification mode
+              configureButtonsForPuzzleType("path_identification");
             }
             // For detective mode, just set the flag
             else if (currentPuzzle.type === "investigator") {
@@ -2121,6 +2124,9 @@ function setupPresentationMode() {
     currentRayIndex = 0;
   }
   
+  // Configure buttons for presentation mode
+  configureButtonsForPuzzleType("presentation");
+  
   // Add event listener for the Next Puzzle button
   setTimeout(() => {
     const nextBtn = document.getElementById('nextPuzzleBtn');
@@ -2184,6 +2190,85 @@ function disableButtonsForPathIdentification() {
     exportBtn.disabled = true;
     exportBtn.classList.add('disabled-button');
   }
+}
+
+// Function to configure buttons based on puzzle type
+function configureButtonsForPuzzleType(puzzleType) {
+  console.log("Configuring buttons for puzzle type:", puzzleType);
+  
+  // Get references to all buttons
+  const togglePathsBtn = document.getElementById('togglePaths');
+  const addMirrorBtn = document.getElementById('addMirror');
+  const exportBtn = document.getElementById('exportArrangement');
+  
+  // Default state - all buttons enabled
+  let showRaysEnabled = true;
+  let addMirrorEnabled = true;
+  let exportEnabled = true;
+  
+  // Configure buttons based on puzzle type
+  switch (puzzleType) {
+    case "path_identification":
+      // Path identification: disable all buttons
+      showRaysEnabled = false;
+      addMirrorEnabled = false;
+      exportEnabled = false;
+      break;
+      
+    case "investigator":
+      // Investigator: disable Show Rays, Add Mirror, and Export
+      showRaysEnabled = false;
+      addMirrorEnabled = false;
+      exportEnabled = false;
+      break;
+      
+    case "generation":
+      // Generation: disable Export, allow Add Mirror and Show Rays
+      exportEnabled = false;
+      break;
+      
+    case "presentation":
+      // Presentation: all buttons enabled
+      break;
+      
+    default:
+      console.warn("Unknown puzzle type:", puzzleType);
+      break;
+  }
+  
+  // Apply button configurations
+  if (togglePathsBtn) {
+    togglePathsBtn.disabled = !showRaysEnabled;
+    if (showRaysEnabled) {
+      togglePathsBtn.classList.remove('disabled-button');
+    } else {
+      togglePathsBtn.classList.add('disabled-button');
+    }
+  }
+  
+  if (addMirrorBtn) {
+    addMirrorBtn.disabled = !addMirrorEnabled;
+    if (addMirrorEnabled) {
+      addMirrorBtn.classList.remove('disabled-button');
+    } else {
+      addMirrorBtn.classList.add('disabled-button');
+    }
+  }
+  
+  if (exportBtn) {
+    exportBtn.disabled = !exportEnabled;
+    if (exportEnabled) {
+      exportBtn.classList.remove('disabled-button');
+    } else {
+      exportBtn.classList.add('disabled-button');
+    }
+  }
+  
+  console.log("Button configuration complete:", {
+    showRaysEnabled,
+    addMirrorEnabled,
+    exportEnabled
+  });
 }
 
 // Function to re-enable all buttons
@@ -2285,6 +2370,9 @@ function setupDetectivePuzzle() {
   
   // Add the controls for submitting solution
   addDetectiveControls();
+  
+  // Configure buttons for investigator mode
+  configureButtonsForPuzzleType("investigator");
   
   // Initialize UI elements
   try {
@@ -2592,6 +2680,9 @@ function setupGenerationMode() {
     console.log("Setting currentRayIndex to 0 because showRaysStart is true");
     currentRayIndex = 0;
   }
+  
+  // Configure buttons for generation mode
+  configureButtonsForPuzzleType("generation");
   
   console.log("Generation mode setup complete. movableObjects:", JSON.stringify(currentPuzzle.movableObjects));
   console.log("Final puzzle state in setup: isPuzzleSolved =", isPuzzleSolved, "isPuzzleFailed =", isPuzzleFailed);
