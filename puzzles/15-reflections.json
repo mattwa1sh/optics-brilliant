@@ -17,10 +17,10 @@
     "ball": {
       "position": true,
       "region": {
-        "x": 0,
-        "y": 0,
-        "width": 800,
-        "height": 800
+        "x": 100,
+        "y": 100,
+        "width": 600,
+        "height": 600
       }
     },
     "mirrors": [
