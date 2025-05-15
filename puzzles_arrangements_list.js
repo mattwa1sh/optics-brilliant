@@ -83,8 +83,8 @@ const ARRANGEMENTS_LIST = [
   "weird-face.json",
   "whale.json",
   "wrong-optics-1.json",
-  "3-mirrors.json",
-  "4-mirrors.json",
+  "3-mirror.json",
+  "4-mirror.json",
   "x.json",
   "x2.json"
 ];
